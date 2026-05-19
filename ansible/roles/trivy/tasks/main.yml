@@ -1,0 +1,24 @@
+---
+- name: Install required packages for Trivy repo
+  ansible.builtin.yum:
+    name:
+      - yum-utils
+    state: present
+  become: true
+
+- name: Add Trivy repository
+  ansible.builtin.yum_repository:
+    name: trivy
+    description: Trivy repository
+    baseurl: https://aquasecurity.github.io/trivy-repo/rpm/releases/$releasever/$basearch/
+    gpgcheck: true
+    enabled: true
+    gpgkey: https://aquasecurity.github.io/trivy-repo/rpm/public.key
+  become: true
+
+- name: Install Trivy
+  ansible.builtin.yum:
+    name: trivy
+    state: present
+  become: true
+

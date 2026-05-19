@@ -1,0 +1,21 @@
+---
+- name: Install Docker
+  ansible.builtin.yum:
+    name: docker
+    state: present
+  become: true
+
+- name: Enable and start Docker
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+  become: true
+
+- name: Add ec2-user to docker group
+  ansible.builtin.user:
+    name: ec2-user
+    groups: docker
+    append: true
+  become: true
+
