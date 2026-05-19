@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-devops-app
+  namespace: ivolve
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: cloud-devops-app
+  template:
+    metadata:
+      labels:
+        app: cloud-devops-app
+    spec:
+      containers:
+        - name: cloud-devops-app
+          image: cloud-devops-app:v1
+          ports:
+            - containerPort: 5000
