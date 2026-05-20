@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: cloud-devops-app
-          image: cloud-devops-app:v1
+          image: 889007427509.dkr.ecr.eu-north-1.amazonaws.com/cloud-devops-app:v1
           ports:
             - containerPort: 5000

@@ -5,8 +5,8 @@ pipeline {
         IMAGE_NAME = "cloud-devops-app"
         IMAGE_TAG = "${BUILD_NUMBER}"
         AWS_REGION = "eu-north-1"
-        ECR_REPOSITORY = "cloud-devops-app"
-        ECR_REGISTRY = "YOUR_AWS_ACCOUNT_ID.dkr.ecr.eu-north-1.amazonaws.com"
+        ECR_REPOSITORY = "cloud-devops-app" 
+        ECR_REGISTRY = "889007427509.dkr.ecr.eu-north-1.amazonaws.com"
         REPOSITORY_URI = "${ECR_REGISTRY}/${ECR_REPOSITORY}"
     }
 
