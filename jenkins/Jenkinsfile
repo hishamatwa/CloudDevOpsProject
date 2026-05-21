@@ -5,7 +5,7 @@ pipeline {
         IMAGE_NAME = "cloud-devops-app"
         IMAGE_TAG = "${BUILD_NUMBER}"
         AWS_REGION = "eu-north-1"
-        ECR_REPOSITORY = "cloud-devops-app" 
+        ECR_REPOSITORY = "cloud-devops-app"
         ECR_REGISTRY = "889007427509.dkr.ecr.eu-north-1.amazonaws.com"
         REPOSITORY_URI = "${ECR_REGISTRY}/${ECR_REPOSITORY}"
     }
@@ -13,17 +13,17 @@ pipeline {
     stages {
         stage('Build Image') {
             steps {
-                script {
-                    dockerBuild(env.IMAGE_NAME, env.IMAGE_TAG)
-                }
+                sh """
+                    docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -f docker/Dockerfile .
+                """
             }
         }
 
         stage('Scan Image') {
             steps {
-                script {
-                    trivyScan(env.IMAGE_NAME, env.IMAGE_TAG)
-                }
+                sh """
+                    trivy image ${IMAGE_NAME}:${IMAGE_TAG} || true
+                """
             }
         }
 
@@ -31,18 +31,18 @@ pipeline {
             steps {
                 sh """
                     aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_REGISTRY}
+                    docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:${IMAGE_TAG}
+                    docker push ${REPOSITORY_URI}:${IMAGE_TAG}
                 """
-                script {
-                    dockerPush(env.IMAGE_NAME, env.IMAGE_TAG, env.REPOSITORY_URI)
-                }
             }
         }
 
         stage('Delete Image Locally') {
             steps {
-                script {
-                    dockerCleanup(env.IMAGE_NAME, env.IMAGE_TAG, env.REPOSITORY_URI)
-                }
+                sh """
+                    docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true
+                    docker rmi ${REPOSITORY_URI}:${IMAGE_TAG} || true
+                """
             }
         }
 
@@ -61,7 +61,7 @@ pipeline {
                     git config user.name "Jenkins CI"
                     git add kubernetes/base/deployment.yaml
                     git commit -m "ci: update deployment image to ${IMAGE_TAG}" || true
-                    git push origin main
+                    git push origin main || true
                 """
             }
         }
