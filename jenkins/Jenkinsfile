@@ -2,16 +2,16 @@ pipeline {
     agent any
 
     environment {
-    IMAGE_NAME = "cloud-devops-app"
-    IMAGE_TAG = "${BUILD_NUMBER}"
+        IMAGE_NAME = "cloud-devops-app"
+        IMAGE_TAG = "${BUILD_NUMBER}"
 
-    AWS_ACCESS_KEY_ID = credentials('aws-access-key')
-    AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
 
-    AWS_REGION = "eu-north-1"
-    ECR_REPOSITORY = "cloud-devops-app"
-    ECR_REGISTRY = "889007427509.dkr.ecr.eu-north-1.amazonaws.com"
-    REPOSITORY_URI = "${ECR_REGISTRY}/${ECR_REPOSITORY}"
+        AWS_REGION = "eu-north-1"
+        ECR_REPOSITORY = "cloud-devops-app"
+        ECR_REGISTRY = "889007427509.dkr.ecr.eu-north-1.amazonaws.com"
+        REPOSITORY_URI = "${ECR_REGISTRY}/${ECR_REPOSITORY}"
     }
 
     stages {
@@ -65,7 +65,7 @@ pipeline {
                     git config user.name "Jenkins CI"
                     git add kubernetes/base/deployment.yaml
                     git commit -m "ci: update deployment image to ${IMAGE_TAG}" || true
-                    git push origin main || true
+                    git push origin HEAD:main || true
                 """
             }
         }
