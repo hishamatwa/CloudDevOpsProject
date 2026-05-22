@@ -210,37 +210,7 @@ kubectl get pods -A
 
 ---
 
-### NAT Gateway
 
-
-<img width="1918" height="922" alt="06-nat-gateway" src="https://github.com/user-attachments/assets/57d5776e-dfac-4c3f-8463-852448cb292d" />
-
-
----
-
-### Route Tables
-
-
-<img width="1918" height="918" alt="08-private-route-table" src="https://github.com/user-attachments/assets/131ede01-018f-49eb-a0f4-d436bb892224" />
-
----
-
-### Internet Gateway
-
-
-<img width="1918" height="930" alt="10-internet-gateway" src="https://github.com/user-attachments/assets/b171a32a-0751-445c-894f-30a23288084e" />
-
-
----
-
-### Security Groups
-
-
-
-<img width="1918" height="928" alt="12-jenkins-security-group" src="https://github.com/user-attachments/assets/881b2960-6587-47d5-885f-ecdf781570ec" />
-
-
----
 
 ### Jenkins EC2 Instance
 
