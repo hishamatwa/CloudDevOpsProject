@@ -8,8 +8,7 @@
   <img src="https://img.shields.io/badge/Docker-Containers-2496ED?style=for-the-badge&logo=docker" />
 </p>
 
-End-to-end DevOps project deployed on AWS using Terraform, Ansible, Docker, Jenkins, Kubernetes, and Amazon EKS.
-
+Complete DevOps implementation on AWS using Terraform, Jenkins, Docker, Kubernetes, and Amazon EKS.
 ---
 
 ## Project Overview
@@ -47,6 +46,22 @@ This project demonstrates a complete DevOps workflow starting from infrastructur
 ## Project Workflow
 
 GitHub → Jenkins → Docker Build → Amazon ECR → Amazon EKS → Flask Application
+
+```text
+Developer
+   ↓
+GitHub Repository
+   ↓
+Jenkins Pipeline
+   ↓
+Docker Build
+   ↓
+Amazon ECR
+   ↓
+Amazon EKS
+   ↓
+Flask Application
+```
 
 ---
 
