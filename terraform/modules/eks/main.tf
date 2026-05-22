@@ -79,8 +79,7 @@ resource "aws_eks_node_group" "main" {
     min_size     = 3
   }
 
-  instance_types = ["t3.micro"]
-
+  instance_types =  ["t3.micro"]
   depends_on = [
     aws_iam_role_policy_attachment.eks_worker_node_policy,
     aws_iam_role_policy_attachment.eks_cni_policy,

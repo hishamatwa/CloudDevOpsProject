@@ -20,7 +20,7 @@ module "jenkins_server" {
 
   vpc_id           = module.network.vpc_id
   public_subnet_id = module.network.public_subnet_id
-  ami_id = "ami-0e8a0f9c86eecd7ed"
+  ami_id           = "ami-0e8a0f9c86eecd7ed"
   instance_type    = "t3.micro"
 }
 
