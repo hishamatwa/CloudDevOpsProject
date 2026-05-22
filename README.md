@@ -9,6 +9,7 @@
 </p>
 
 Complete DevOps implementation on AWS using Terraform, Jenkins, Docker, Kubernetes, and Amazon EKS.
+
 ---
 
 ## Table of Contents
@@ -24,6 +25,8 @@ Complete DevOps implementation on AWS using Terraform, Jenkins, Docker, Kubernet
 - [Usage Instructions](#usage-instructions)
 - [Verification](#verification)
 - [Setup Documentation](#setup-documentation)
+
+---
 
 ## Project Overview
 
@@ -94,14 +97,17 @@ Terraform was used to provision:
 * EKS Worker Nodes
 * Amazon ECR Repository
 
-  
 ### Terraform Deployment
 
 ```bash
 cd terraform/environments/dev
 
 terraform init
+terraform plan
+terraform apply
 ```
+
+Terraform successfully initialized and applied the AWS infrastructure resources.
 
 <img width="85%" height="77" alt="19-terraform-output" src="https://github.com/user-attachments/assets/f856fab1-d24d-4a31-8fe8-9cdfe5958fff" />
 
@@ -147,15 +153,11 @@ The Jenkins pipeline automates the following workflow:
 
 <img width="85%" height="965" alt="25-jenkins-docker-build-output" src="https://github.com/user-attachments/assets/e1770ab2-716d-459b-9d62-236e056ef2b4" />
 
-
 ---
 
 ### Amazon ECR Push Output
 
-
-
 <img width="85%" height="977" alt="26-jenkins-ecr-push-output" src="https://github.com/user-attachments/assets/c048da71-d37a-4f63-9edd-855e21c9661e" />
-
 
 ---
 
@@ -182,25 +184,15 @@ kubectl get pods -A
 
 ---
 
-### Kubernetes Deployment
-
-
-<img width="85%" height="298" alt="21-kubectl-get-all-ivolve" src="https://github.com/user-attachments/assets/cf4bf655-ccfb-401e-b8a4-dc9b328dda13" />
-
----
-
 ### Updated Deployment Image
 
 <img width="85%" height="43" alt="22-kubernetes-deployment-image" src="https://github.com/user-attachments/assets/5e5358ed-43e9-4006-8e82-a49f4a3257fe" />
-
 
 ---
 
 ### Running Application
 
-
 <img width="85%" height="967" alt="23-application-running" src="https://github.com/user-attachments/assets/5d035d0a-908b-41bc-9a69-eae06e560a67" />
-
 
 ---
 
@@ -208,61 +200,25 @@ kubectl get pods -A
 
 ### Amazon ECR Repository
 
-
 <img width="85%" height="932" alt="01-ecr-repository-images" src="https://github.com/user-attachments/assets/c80e285b-4384-4aee-9bbd-047c2c612895" />
-
----
-
-### ECR Image Details
-
-
-<img width="85%" height="913" alt="02-ecr-image-details" src="https://github.com/user-attachments/assets/c3c0483b-a417-4c5a-9735-590620583ed8" />
-
 
 ---
 
 ### Custom VPC
 
-
 <img width="85%" height="923" alt="04-cloud-devops-vpc-details" src="https://github.com/user-attachments/assets/20582cf9-f6ee-4268-b1b8-71ea63178c08" />
-
-
 
 ---
 
 ### VPC Resource Map
 
-
 <img width="85%" height="932" alt="05-vpc-resource-map" src="https://github.com/user-attachments/assets/9c390f24-7fa2-45d6-9090-5e1cc8905ca8" />
-
-
----
-
-
-
-### Jenkins EC2 Instance
-
-
-<img width="85%" height="917" alt="15-jenkins-ec2-details" src="https://github.com/user-attachments/assets/30357a01-4ce7-43f2-8ec5-e6f1ae2e16a7" />
-
 
 ---
 
 ### Amazon EKS Cluster
 
-
 <img width="85%" height="921" alt="16-eks-cluster-overview" src="https://github.com/user-attachments/assets/cffd5d1e-5eb1-49a0-892e-098fa55abc52" />
-
-
-
----
-
-### Amazon EKS Node Group
-
-
-<img width="85%" height="918" alt="18-eks-node-group-details" src="https://github.com/user-attachments/assets/7b8dafe0-ed9a-4535-a671-4b3a15f2b3be" />
-
-
 
 ---
 
@@ -333,19 +289,3 @@ Included files:
 * kubernetes.md
 * jenkins.md
 * argocd.md
-
----
-
-## ArgoCD Note
-
-ArgoCD integration was tested on the EKS cluster.
-
-However, due to AWS Free Tier limitations (`t3.micro` worker nodes), continuous ArgoCD operation was not maintained in the final deployment.
-
-The deployment currently relies on Jenkins CI/CD and Kubernetes rolling deployments.
-
----
-
-* Multi-environment deployment supportterraform plan
-terraform apply
-```
